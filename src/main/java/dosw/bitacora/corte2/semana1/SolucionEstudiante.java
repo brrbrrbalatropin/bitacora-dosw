@@ -19,4 +19,13 @@ public class SolucionEstudiante {
                 .toList();
         return resultado;
     }
+
+    public double promedioEstudiantes(List<Grade> notas){
+        double resultado = notas.stream()
+                .mapToDouble(Grade :: getScore)
+                .average()
+                .orElse(0.0); //si es nulo da cero
+        return resultado;
+    }
+
 }
