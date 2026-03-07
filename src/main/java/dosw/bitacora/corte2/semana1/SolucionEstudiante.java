@@ -12,10 +12,11 @@ public class SolucionEstudiante {
         return estudiantes;
     }
 
-    public List<Student> ordenaEstudiantes(List<Student> estudiantes){
-        estudiantes = estudiantes.stream()
+    public List<String> ordenaEstudiantes(List<Student> estudiantes){
+        List<String> resultado = estudiantes.stream()
+                .map(Student ::getName)
                 .sorted()
                 .toList();
-        return estudiantes;
+        return resultado;
     }
 }
