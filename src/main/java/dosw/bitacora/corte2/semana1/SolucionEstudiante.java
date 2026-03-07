@@ -7,9 +7,15 @@ public class SolucionEstudiante {
 
     public List<Student> filtrarPorEquipo(List<Student> estudiantes, String equipo){
         estudiantes = estudiantes.stream()
-                .filter(student -> equipo.equals(student.team))
+                .filter(student -> equipo.equals(student.getTeam()))
                 .toList();
         return estudiantes;
     }
 
+    public List<Student> ordenaEstudiantes(List<Student> estudiantes){
+        estudiantes = estudiantes.stream()
+                .sorted()
+                .toList();
+        return estudiantes;
+    }
 }

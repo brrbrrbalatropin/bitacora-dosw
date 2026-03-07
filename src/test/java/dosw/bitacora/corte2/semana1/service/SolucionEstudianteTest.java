@@ -13,25 +13,13 @@ public class SolucionEstudianteTest {
     @Test
     void pruebaNaranja(){
         SolucionEstudiante solucion = new SolucionEstudiante();
-        Student s1 = new Student();
-        s1.id = "1";
-        s1.name = "Juan";
-        s1.team = "NARANJA";
+        Student s1 = new Student("1","Juan","NARANJA");
 
-        Student s2 = new Student();
-        s2.id = "2";
-        s2.name = "Pedro";
-        s2.team = "AZUL";
+        Student s2 = new Student("2","Pedro","AZUL");
 
-        Student s3 = new Student();
-        s3.id = "3";
-        s3.name = "Paco";
-        s3.team = "NARANJA";
+        Student s3 = new Student("3","Paco","NARANJA");
 
-        Student s4 = new Student();
-        s4.id = "4";
-        s4.name = "Juanito Alcachofa";
-        s4.team = "NARANJA";
+        Student s4 = new Student("4","Juanito Alcachofa", "NARANJA");
 
         List<Student> estudiantes = List.of(s1, s2,s3,s4);
 
