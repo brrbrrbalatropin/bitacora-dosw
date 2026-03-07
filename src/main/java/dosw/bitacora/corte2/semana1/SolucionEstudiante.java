@@ -1,5 +1,6 @@
 package dosw.bitacora.corte2.semana1;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
@@ -28,4 +29,10 @@ public class SolucionEstudiante {
         return resultado;
     }
 
+        public Student promedioMasAlto(List<Student> estudiantes){
+            Student resultado = estudiantes.stream()
+                    .max(Comparator.comparingDouble(student -> this.promedioEstudiantes(student.getGrades())))
+                    .orElse(null);
+            return resultado;
+        }
 }

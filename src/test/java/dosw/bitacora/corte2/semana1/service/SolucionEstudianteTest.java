@@ -15,10 +15,10 @@ public class SolucionEstudianteTest {
     @Test
     void pruebaNaranja(){
         SolucionEstudiante solucion = new SolucionEstudiante();
-        Student s1 = new Student("1","Juan","NARANJA");
-        Student s2 = new Student("2","Pedro","AZUL");
-        Student s3 = new Student("3","Paco","NARANJA");
-        Student s4 = new Student("4","Juanito Alcachofa", "NARANJA");
+        Student s1 = new Student("1","Juan","NARANJA", null);
+        Student s2 = new Student("2","Pedro","AZUL", null);
+        Student s3 = new Student("3","Paco","NARANJA", null);
+        Student s4 = new Student("4","Juanito Alcachofa", "NARANJA", null);
 
         List<Student> estudiantes = List.of(s1, s2,s3,s4);
 
@@ -30,10 +30,10 @@ public class SolucionEstudianteTest {
     @Test
     void pruebaOrdenador(){
         SolucionEstudiante solucion = new SolucionEstudiante();
-        Student s1 = new Student("1","Juan","NARANJA");
-        Student s2 = new Student("2","Pedro","AZUL");
-        Student s3 = new Student("3","Paco","NARANJA");
-        Student s4 = new Student("4","Juanito Alcachofa", "NARANJA");
+        Student s1 = new Student("1","Juan","NARANJA", null);
+        Student s2 = new Student("2","Pedro","AZUL", null);
+        Student s3 = new Student("3","Paco","NARANJA", null);
+        Student s4 = new Student("4","Juanito Alcachofa", "NARANJA", null);
 
         List<Student> estudiantes = List.of(s1, s2,s3,s4);
 
@@ -45,15 +45,48 @@ public class SolucionEstudianteTest {
     @Test
     void PruebaPromedioGeneral(){
         SolucionEstudiante solucion = new SolucionEstudiante();
-        Grade g1 = new Grade("DOSW", 3.7, LocalDate.of(2026,3,7), true );
-        Grade g2 = new Grade("DOSW", 4.5, LocalDate.of(2026,3,7), true );
-        Grade g3 = new Grade("DOSW", 2.0, LocalDate.of(2026,3,7),false );
-        Grade g4 = new Grade("DOSW", 1.7, LocalDate.of(2026,3,7), false );
+        Grade g1 = new Grade("DOSW", 3.7, LocalDate.of(2026,3,7));
+        Grade g2 = new Grade("DOSW", 4.5, LocalDate.of(2026,3,7));
+        Grade g3 = new Grade("DOSW", 2.0, LocalDate.of(2026,3,7));
+        Grade g4 = new Grade("DOSW", 1.7, LocalDate.of(2026,3,7));
 
         List<Grade> notas = List.of(g1, g2,g3,g4);
 
         double resultado = solucion.promedioEstudiantes(notas);
         assertEquals(2.975,resultado);
 
+    }
+
+    @Test
+    void PruebaEstudiantePromedioMasAlto(){
+        SolucionEstudiante solucion = new SolucionEstudiante();
+        Student s1 = new Student("1", "Juan", "NARANJA", List.of(
+                new Grade("DOSW", 3.7, LocalDate.of(2026, 3, 7)),
+                new Grade("BD", 4.5, LocalDate.of(2026, 3, 7)),
+                new Grade("REDES", 4.5, LocalDate.of(2026, 3, 7))
+        ));
+
+        Student s2 = new Student("2", "Pedro","AZUL", List.of(
+                new Grade("DOSW", 3.9, LocalDate.of(2026, 3, 7)),
+                new Grade("BD", 2.7, LocalDate.of(2026, 3, 7)),
+                new Grade("REDES", 4.4, LocalDate.of(2026, 3, 7))
+        ));
+
+        Student s3 = new Student("3","Paco","NARANJA", List.of(
+                new Grade("DOSW", 3.8, LocalDate.of(2026, 3, 7)),
+                new Grade("BD", 3.2, LocalDate.of(2026, 3, 7)),
+                new Grade("REDES", 4.0, LocalDate.of(2026, 3, 7))
+        ));
+
+        Student s4 = new Student("4","Juanito Alcachofa","NARANJA", List.of(
+                new Grade("DOSW", 2.3, LocalDate.of(2026, 3, 7)),
+                new Grade("BD", 3.1, LocalDate.of(2026, 3, 7)),
+                new Grade("REDES", 3.0, LocalDate.of(2026, 3, 7))
+        ));
+
+        List<Student> estudiantes = List.of(s1, s2,s3,s4);
+
+        Student resultado = solucion.promedioMasAlto(estudiantes);
+        assertEquals(s1, resultado);
     }
 }

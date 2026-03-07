@@ -8,11 +8,11 @@ public class Grade {
     private LocalDate date;
     private boolean passed;
 
-    public Grade(String subject, double score, LocalDate date, boolean passed) {
+    public Grade(String subject, double score, LocalDate date) {
         this.subject = subject;
         this.score = score;
         this.date = date;
-        this.passed = passed;
+        this.passed = score >= 3.0;
     }
 
     public String getSubject() {
