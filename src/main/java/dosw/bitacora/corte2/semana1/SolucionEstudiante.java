@@ -1,8 +1,7 @@
 package dosw.bitacora.corte2.semana1;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class SolucionEstudiante {
 
@@ -20,6 +19,13 @@ public class SolucionEstudiante {
                 .toList();
         return resultado;
     }
+
+    public Map<String,Double> promedioPorMateria(Student estudiante){
+        Map<String,Double> resultado = estudiante.getGrades().stream()
+                .collect(Collectors.groupingBy(grade -> grade.getSubject(),Collectors.averagingDouble(grade -> grade.getScore())));
+        return resultado;
+    }
+
 
     public double promedioEstudiantes(List<Grade> notas){
         double resultado = notas.stream()

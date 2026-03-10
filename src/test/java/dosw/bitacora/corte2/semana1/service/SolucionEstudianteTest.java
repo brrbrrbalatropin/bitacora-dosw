@@ -7,6 +7,7 @@ import dosw.bitacora.corte2.semana1.SolucionEstudiante;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -55,6 +56,23 @@ public class SolucionEstudianteTest {
         double resultado = solucion.promedioEstudiantes(notas);
         assertEquals(2.975,resultado);
 
+    }
+
+    @Test
+    void pruebaPromedioPorMateria(){
+        SolucionEstudiante solucion = new SolucionEstudiante();
+
+        Student s1 = new Student("1", "Juan", "NARANJA", List.of(
+                new Grade("DOSW", 4.0, LocalDate.of(2026, 3, 7)),
+                new Grade("DOSW", 2.0, LocalDate.of(2026, 3, 7)),
+                new Grade("BD", 3.0, LocalDate.of(2026, 3, 7)),
+                new Grade("BD", 5.0, LocalDate.of(2026, 3, 7))
+        ));
+
+        Map<String, Double> resultado = solucion.promedioPorMateria(s1);
+
+        assertEquals(3.0, resultado.get("DOSW"));
+        assertEquals(4.0, resultado.get("BD"));
     }
 
     @Test
