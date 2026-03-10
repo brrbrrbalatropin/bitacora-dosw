@@ -134,4 +134,37 @@ public class SolucionEstudianteTest {
         assertEquals(2L, resultado.get("NARANJA"));
         assertEquals(2L, resultado.get("AZUL"));
     }
+
+    @Test
+    void pruebaTop3Aprobados(){
+        SolucionEstudiante solucion = new SolucionEstudiante();
+
+        Student s1 = new Student("1", "Juan", "NARANJA", List.of(
+                new Grade("DOSW", 4.0, LocalDate.of(2026, 3, 7)),
+                new Grade("BD", 4.0, LocalDate.of(2026, 3, 7)),
+                new Grade("REDES", 4.0, LocalDate.of(2026, 3, 7))
+        ));
+
+        Student s2 = new Student("2", "Pedro", "AZUL", List.of(
+                new Grade("DOSW", 4.0, LocalDate.of(2026, 3, 7)),
+                new Grade("BD", 2.0, LocalDate.of(2026, 3, 7))
+        ));
+
+        Student s3 = new Student("3", "Ana", "VERDE", List.of(
+                new Grade("DOSW", 4.0, LocalDate.of(2026, 3, 7)),
+                new Grade("BD", 4.0, LocalDate.of(2026, 3, 7))
+        ));
+
+        Student s4 = new Student("4", "Maria", "NARANJA", List.of(
+                new Grade("DOSW", 2.0, LocalDate.of(2026, 3, 7))
+        ));
+
+        List<Student> resultado = solucion.top3Aprobados(List.of(s1, s2, s3, s4));
+
+        assertEquals(3, resultado.size());
+        assertEquals("Juan", resultado.get(0).getName());   // 3 aprobadas
+        assertEquals("Ana", resultado.get(1).getName());    // 2 aprobadas
+        assertEquals("Pedro", resultado.get(2).getName());  // 1 aprobada
+    }
+
 }

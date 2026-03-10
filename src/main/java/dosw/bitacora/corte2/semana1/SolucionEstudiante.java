@@ -48,4 +48,15 @@ public class SolucionEstudiante {
         return resultado;
     }
 
+    public List<Student> top3Aprobados(List<Student> estudiantes){
+        List<Student> resultado = estudiantes.stream()
+                .sorted(Comparator.comparingLong((Student student) ->
+                        student.getGrades().stream()
+                                .filter(grade -> grade.isPassed())
+                                .count()).reversed())
+                .limit(3)
+                .toList();
+        return resultado;
+    }
+
 }
