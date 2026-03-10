@@ -35,10 +35,17 @@ public class SolucionEstudiante {
         return resultado;
     }
 
-        public Student promedioMasAlto(List<Student> estudiantes){
+    public Student promedioMasAlto(List<Student> estudiantes){
             Student resultado = estudiantes.stream()
                     .max(Comparator.comparingDouble(student -> this.promedioEstudiantes(student.getGrades())))
                     .orElse(null);
             return resultado;
-        }
+    }
+
+    public Map<String,Long> materiasPerdidas(List<Student> estudiantes){
+        Map<String,Long> resultado = estudiantes.stream()
+                .collect(Collectors.groupingBy(student -> student.getTeam(),Collectors.summingLong(student -> student.getGrades().stream().filter(grade -> !grade.isPassed()).count())));
+        return resultado;
+    }
+
 }

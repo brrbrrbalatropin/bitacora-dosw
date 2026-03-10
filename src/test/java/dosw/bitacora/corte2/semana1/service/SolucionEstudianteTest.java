@@ -107,4 +107,31 @@ public class SolucionEstudianteTest {
         Student resultado = solucion.promedioMasAlto(estudiantes);
         assertEquals(s1, resultado);
     }
+
+    @Test
+    void pruebaMateriasPerdidas(){
+        SolucionEstudiante solucion = new SolucionEstudiante();
+
+        Student s1 = new Student("1", "Juan", "NARANJA", List.of(
+                new Grade("DOSW", 2.0, LocalDate.of(2026, 3, 7)),
+                new Grade("BD", 4.0, LocalDate.of(2026, 3, 7))
+        ));
+
+        Student s2 = new Student("2", "Pedro", "NARANJA", List.of(
+                new Grade("DOSW", 1.5, LocalDate.of(2026, 3, 7)),
+                new Grade("BD", 4.5, LocalDate.of(2026, 3, 7))
+        ));
+
+        Student s3 = new Student("3", "Ana", "AZUL", List.of(
+                new Grade("DOSW", 1.0, LocalDate.of(2026, 3, 7)),
+                new Grade("BD", 1.0, LocalDate.of(2026, 3, 7))
+        ));
+
+        List<Student> estudiantes = List.of(s1, s2, s3);
+
+        Map<String, Long> resultado = solucion.materiasPerdidas(estudiantes);
+
+        assertEquals(2L, resultado.get("NARANJA"));
+        assertEquals(2L, resultado.get("AZUL"));
+    }
 }
