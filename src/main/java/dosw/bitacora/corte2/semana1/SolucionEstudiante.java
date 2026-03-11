@@ -2,6 +2,8 @@ package dosw.bitacora.corte2.semana1;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.LinkedHashMap;
 
 public class SolucionEstudiante {
 
@@ -80,5 +82,19 @@ public class SolucionEstudiante {
                 .map(Map.Entry::getKey)
                 .orElse(null);
         return resultado;
+    }
+
+    public LinkedHashMap<String, Double> unMontonDeCosas(List<Student> estudiantes){
+        LinkedHashMap<String, Double> resultado =  estudiantes.stream()
+                .filter(student -> filtrarPorEquipo(estudiantes, "NARANJA").contains(student))
+                .flatMap(student -> student.getGrades().stream())
+                .filter(grade -> grade.isPassed())
+                .collect(Collectors.groupingBy(Grade::getSubject,Collectors.averagingDouble(grade -> grade.getScore())))
+                .entrySet().stream()
+                .sorted(Map.Entry.<String,Double>comparingByValue().reversed()) // A partir de aca le pedí ayuda a la IA porque ya no tenia idea de como hacerlo :(
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1,e2) -> e1, LinkedHashMap::new)) //osea esta linea y la anterior, no sabia nada de esa estructura de datos ni como convertirla
+                ;
+        return resultado;
+
     }
 }

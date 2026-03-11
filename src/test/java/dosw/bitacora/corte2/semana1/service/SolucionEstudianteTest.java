@@ -6,6 +6,7 @@ import dosw.bitacora.corte2.semana1.Student;
 import dosw.bitacora.corte2.semana1.SolucionEstudiante;
 
 import java.time.LocalDate;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -210,5 +211,31 @@ public class SolucionEstudianteTest {
         String resultado = solucion.masReprobados(List.of(s1, s2));
 
         assertEquals("DOSW", resultado);
+    }
+
+    @Test
+    void pruebaUnMontonDeCosas(){
+        SolucionEstudiante solucion = new SolucionEstudiante();
+
+        Student s1 = new Student("1", "Juan", "NARANJA", List.of(
+                new Grade("DOSW", 5.0, LocalDate.of(2026, 3, 7)),
+                new Grade("BD", 3.0, LocalDate.of(2026, 3, 7)),
+                new Grade("REDES", 2.0, LocalDate.of(2026, 3, 7))
+        ));
+
+        Student s2 = new Student("2", "Pedro", "NARANJA", List.of(
+                new Grade("DOSW", 4.0, LocalDate.of(2026, 3, 7)),
+                new Grade("BD", 5.0, LocalDate.of(2026, 3, 7))
+        ));
+
+        Student s3 = new Student("3", "Ana", "AZUL", List.of(
+                new Grade("DOSW", 5.0, LocalDate.of(2026, 3, 7)),
+                new Grade("BD", 5.0, LocalDate.of(2026, 3, 7))
+        ));
+
+        LinkedHashMap<String, Double> resultado = solucion.unMontonDeCosas(List.of(s1, s2, s3));
+
+        assertEquals(2, resultado.size()); // Redes queda reprobado y no sale y se excluye azul
+        assertEquals("DOSW", resultado.keySet().stream().findFirst().get()); // DOSW tiene el mayor promedio
     }
 }
