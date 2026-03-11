@@ -162,9 +162,9 @@ public class SolucionEstudianteTest {
         List<Student> resultado = solucion.top3Aprobados(List.of(s1, s2, s3, s4));
 
         assertEquals(3, resultado.size());
-        assertEquals("Juan", resultado.get(0).getName()); //3
-        assertEquals("Ana", resultado.get(1).getName()); //2
-        assertEquals("Pedro", resultado.get(2).getName()); //1
+        assertEquals("Juan", resultado.get(0).getName()); // 3 aprobadas
+        assertEquals("Ana", resultado.get(1).getName()); // 2 aprobadas
+        assertEquals("Pedro", resultado.get(2).getName()); // 1 aprobada
     }
 
     @Test
@@ -191,5 +191,24 @@ public class SolucionEstudianteTest {
         assertEquals(1, resultado.get("ALTO RENDIMIENTO").size());
         assertEquals(1, resultado.get("REGULAR").size());
         assertEquals(1, resultado.get("RIESGO").size());
+    }
+
+    @Test
+    void pruebaMateriaMasReprobada(){
+        SolucionEstudiante solucion = new SolucionEstudiante();
+
+        Student s1 = new Student("1", "Juan", "NARANJA", List.of(
+                new Grade("DOSW", 2.0, LocalDate.of(2026, 3, 7)),
+                new Grade("BD", 2.0, LocalDate.of(2026, 3, 7))
+        ));
+
+        Student s2 = new Student("2", "Pedro", "AZUL", List.of(
+                new Grade("DOSW", 2.0, LocalDate.of(2026, 3, 7)),
+                new Grade("BD", 4.0, LocalDate.of(2026, 3, 7))
+        ));
+
+        String resultado = solucion.masReprobados(List.of(s1, s2));
+
+        assertEquals("DOSW", resultado);
     }
 }

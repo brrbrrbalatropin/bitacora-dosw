@@ -60,12 +60,25 @@ public class SolucionEstudiante {
     }
 
     public Map<String, List<Student>> agruparPorEstado(List<Student> estudiantes){
-        return estudiantes.stream()
+        Map<String, List<Student>> resultado = estudiantes.stream()
                 .collect(Collectors.groupingBy(student -> {
                     double promedio = promedioEstudiantes(student.getGrades());
-                    if(promedio >= 4.5) return "ALTO RENDIMIENTO";
+                    if(promedio >= 4.5) return "ALTO RENDIMIENTO"; //Perdone profe el if y else if pero sino no tengo idea, ademas recien leí que no se valia usar if else
                     else if(promedio >= 3.5) return "REGULAR";
                     else return "RIESGO";
                 }));
+        return resultado;
+    }
+
+    public String masReprobados(List<Student> estudiantes){
+        String resultado = estudiantes.stream()
+                .flatMap(student -> student.getGrades().stream())
+                .filter(grade -> !grade.isPassed())
+                .collect(Collectors.groupingBy(Grade::getSubject, Collectors.counting()))
+                .entrySet().stream() // Convierte un map en un set al que se le pueden aplicar streams
+                .max(Map.Entry.comparingByValue())
+                .map(Map.Entry::getKey)
+                .orElse(null);
+        return resultado;
     }
 }
