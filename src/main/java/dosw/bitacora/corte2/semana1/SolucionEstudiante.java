@@ -59,4 +59,13 @@ public class SolucionEstudiante {
         return resultado;
     }
 
+    public Map<String, List<Student>> agruparPorEstado(List<Student> estudiantes){
+        return estudiantes.stream()
+                .collect(Collectors.groupingBy(student -> {
+                    double promedio = promedioEstudiantes(student.getGrades());
+                    if(promedio >= 4.5) return "ALTO RENDIMIENTO";
+                    else if(promedio >= 3.5) return "REGULAR";
+                    else return "RIESGO";
+                }));
+    }
 }
