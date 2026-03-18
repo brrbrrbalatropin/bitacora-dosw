@@ -14,3 +14,8 @@ un poco del ejercicio que ya se habia hecho y practicar otro patron)
 
 ## 2. Realizar diagrama UML
 ![Ejercicio1.png](imagenes/Ejercicio1.png)
+
+
+
+## diagrama UML del segundo ejercicio
+![img.png](imagenes/img.png)
