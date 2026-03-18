@@ -1,6 +1,5 @@
 package dosw.bitacora.corte2.semana2.ejercicio1;
 
-import dosw.bitacora.corte2.semana2.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

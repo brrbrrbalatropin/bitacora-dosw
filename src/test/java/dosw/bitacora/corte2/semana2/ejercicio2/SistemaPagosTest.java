@@ -1,4 +1,4 @@
-package dosw.bitacora.corte2.semana2.ejercicio1;
+package dosw.bitacora.corte2.semana2.ejercicio2;
 
 import dosw.bitacora.corte2.semana2.ejercicio2.adapter.*;
 import dosw.bitacora.corte2.semana2.ejercicio2.chain.*;

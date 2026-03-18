@@ -1,4 +1,4 @@
-package dosw.bitacora.corte2.semana2;
+package dosw.bitacora.corte2.semana2.ejercicio1;
 
 public class Sms implements Estrategia{
     @Override
