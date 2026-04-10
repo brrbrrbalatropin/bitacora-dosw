@@ -155,6 +155,9 @@ CORS (Cross-Origin Resource Sharing) controla qué dominios externos pueden hace
 <!-- Pega aquí el screenshot del pipeline de GitHub Actions -->
 ![Pipeline CI/CD](./docs/pipeline.png)
 
+
+https://github.com/brrbrrbalatropin/ECI-SportLife
+
 ### Video demostración
 
 
